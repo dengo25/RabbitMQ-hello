@@ -1,9 +1,6 @@
 package com.example.rabibitmqhello.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
@@ -12,13 +9,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
   
-  public static final String EXCHANGE_NAME = "hello.exchange";
-  public static final String QUEUE_NAME = "hello.queue";
-  public static final String ROUTING_KEY = "hello.key.#";
+  public static final String EXCHANGE_NAME = "example.exchange";
+  public static final String QUEUE_NAME = "example.queue";
+  public static final String ROUTING_KEY = "example.key.#";
   
   @Bean
-  public TopicExchange exchange() {
-    return new TopicExchange(EXCHANGE_NAME);
+  public DirectExchange exchange() {
+    return new DirectExchange(EXCHANGE_NAME);
   }
   
   @Bean
@@ -28,7 +25,7 @@ public class RabbitMQConfig {
   }
   
   @Bean
-  public Binding binding(Queue queue, TopicExchange exchange) {
+  public Binding binding(Queue queue, DirectExchange exchange) {
     return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
   }
   
