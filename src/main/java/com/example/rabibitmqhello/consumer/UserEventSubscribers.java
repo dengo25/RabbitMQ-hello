@@ -27,6 +27,15 @@ public class UserEventSubscribers {
   }
   
   @RabbitListener(queues = FanoutEventConfig.AUTH_QUEUE_NAME)
+  public void handleUserDeactivationForAuth(UserEventDto event) {
+    log.info(
+        "[Subscriber: Auth Service] Event received. Expiring " +
+            "all sessions for user '{}'. Event Details: {}",
+        event.getUserId(), event
+    );
+  }
+  
+  @RabbitListener(queues = FanoutEventConfig.FEED_QUEUE_NAME)
   public void handleUserDeactivationForFeed(UserEventDto event) {
     log.info(
         "[Subscriber: Feed Service] Event received. Archiving " +
@@ -34,4 +43,5 @@ public class UserEventSubscribers {
         event.getUserId(), event
     );
   }
+
 }
