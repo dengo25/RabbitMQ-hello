@@ -19,7 +19,7 @@ import java.util.UUID;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class WorkController {
+public class WorkProducerController {
   private final RabbitTemplate rabbitTemplate;
   
   @PostMapping("/work/request-image-resize")
