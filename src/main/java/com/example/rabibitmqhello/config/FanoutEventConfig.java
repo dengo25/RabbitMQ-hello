@@ -61,6 +61,7 @@ public class FanoutEventConfig {
   }
   
   // 3개의 큐 모두 동일한 FanoutExchange에 바인딩
+  // fanout은 라우터키가 불필요 -> 다 뿌리기 때문에
   @Bean
   public Binding emailBinding(Queue emailQueue, FanoutExchange fanoutExchange) {
     return BindingBuilder.bind(emailQueue).to(fanoutExchange);
