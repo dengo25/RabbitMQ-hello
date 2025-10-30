@@ -14,17 +14,17 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-public class HelloController {
+public class MessageProducerController {
   private final RabbitTemplate rabbitTemplate;
   
   @GetMapping("/send/text")
-  public String sendMessage(@RequestParam String message) {
+  public String sendTextMessage(@RequestParam String message) {
     //메세지를 hello.exchange로 hello.key.1 이라는 라우팅 키로 발행
     rabbitTemplate.convertAndSend(
         RabbitMQConfig.EXCHANGE_NAME,
         "hello.key.1",
         message);
-    return "Message sent: " + message;
+    return "Text Message sent: " + message;
     
   }
   
@@ -43,7 +43,7 @@ public class HelloController {
     // 개발자는 json 변환을 신경 안 써도 된다. 앞서 설정한 MesageConverter가 이 객체를 자동으로 직렬화해서 전송
     rabbitTemplate.convertAndSend(
         RabbitMQConfig.EXCHANGE_NAME,
-        "order.created.key",
+        "hello.key.order",
         order);
     
     return "Order message sent successfully!";
