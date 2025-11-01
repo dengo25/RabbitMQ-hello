@@ -77,6 +77,7 @@ public class TopicLogConfig {
         .with(BINDING_PATTERN_ALL);
   }
   
+  @Bean
   public Binding errorLogsBinding(Queue errorLogsQueue, TopicExchange topicExchange) {
     // "errorLogsQueue"는 "log.error.*" 패턴으로 Exchange를 구독합니다.
     return BindingBuilder.bind(errorLogsQueue)
