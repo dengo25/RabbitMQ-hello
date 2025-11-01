@@ -34,8 +34,8 @@ public class HeaderNotificationConfig {
   
   public static final String HEADERS_EXCHANGE_NAME = "notification.headers.exchange";
   
-  private static final String SMS_NOTIFICATION_QUEUE = "notification.sms.queue";
-  private static final String KAKAO_NOTIFICATION_QUEUE = "notification.kakao.queue";
+  public static final String SMS_NOTIFICATION_QUEUE = "notification.sms.queue";
+  public static final String KAKAO_NOTIFICATION_QUEUE = "notification.kakao.queue";
   
   @Bean
   public HeadersExchange headersExchange() {
