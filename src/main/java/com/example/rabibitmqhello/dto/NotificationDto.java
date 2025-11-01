@@ -13,4 +13,6 @@ public class NotificationDto {
   
   private String recipient;
   private String content;
+  private String priority; //이게 빠져있는듯
+  
 }
